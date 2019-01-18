@@ -186,6 +186,8 @@ if [ -e /Volumes/EFI/EFI/CLOVER/config.plist ]; then
 	        $KEXTTOPATCH $config Has -find "83BD7CFF FFFF0F" -replace "83BD7CFF FFFF1F" -name com.apple.driver.usb.AppleUSBXHCI || $KEXTTOPATCH $config add -find "83BD7CFF FFFF0F" -replace "83BD7CFF FFFF1F" -name com.apple.driver.usb.AppleUSBXHCI
 	elif [[ $(sw_vers -productVersion) =~ (10.13.4|10.13.5|10.13.6)$ ]]; then
 	        $KEXTTOPATCH $config Has -find "C8000000 83FB02" -replace "C8000000 83FB11" -name com.apple.driver.usb.AppleUSBXHCI || $KEXTTOPATCH $config add -find "C8000000 83FB02" -replace "C8000000 83FB11" -name com.apple.driver.usb.AppleUSBXHCI
+	elif [[ $(sw_vers -productVersion) =~ (10.14.1|10.14.2)$ ]]; then
+		$KEXTTOPATCH $config Has -find "00E083FB 0F0F8716 0400" -replace "00E083FB 3F0F8716 0400" -name IOUSBHostFamily || $KEXTTOPATCH $config add -find "00E083FB 0F0F8716 0400" -replace "00E083FB 3F0F8716 0400" -name IOUSBHostFamily
 	fi
 	if [[ $(sw_vers -productVersion) =~ (10.13|10.13.0|10.13.1|10.13.2|10.13.3)$ ]]; then
 		$KEXTTOPATCH $config Has -find "837D8C10" -replace "837D8C1B" -name com.apple.driver.usb.AppleUSBXHCIPCI || $KEXTTOPATCH $config add -find "837D8C10" -replace "837D8C1B" -name com.apple.driver.usb.AppleUSBXHCIPCI
@@ -193,6 +195,8 @@ if [ -e /Volumes/EFI/EFI/CLOVER/config.plist ]; then
 		$KEXTTOPATCH $config Has -find "837D940F 0F839704 0000" -replace "837D940F 90909090 9090" -name com.apple.driver.usb.AppleUSBXHCI || $KEXTTOPATCH $config add -find "837D940F 0F839704 0000" -replace "837D940F 90909090 9090" -name com.apple.driver.usb.AppleUSBXHCI
 	elif [[ $(sw_vers -productVersion) == 10.13.6 ]]; then
 		$KEXTTOPATCH $config Has -find "837D880F 0F83A704 0000" -replace "837D880F 90909090 9090" -name com.apple.driver.usb.AppleUSBXHCI || $KEXTTOPATCH $config add -find "837D880F 0F83A704 0000" -replace "837D880F 90909090 9090" -name com.apple.driver.usb.AppleUSBXHCI
+	elif [[ $(sw_vers -productVersion) =~ (10.14.1|10.14.2)$ ]]; then
+		$KEXTTOPATCH $config Has -find "83FB0F0F 83030500 00" -replace "83FB0F90 90909090 90" -name com.apple.driver.usb.AppleUSBXHCI || $KEXTTOPATCH $config add -find "83FB0F0F 83030500 00" -replace "83FB0F90 90909090 90" -name com.apple.driver.usb.AppleUSBXHCI
 	fi
 else
 	echo -e "\n[ERROR] Installed clover have config.plist missing \n[ALERT] USB ports might not work completely."
